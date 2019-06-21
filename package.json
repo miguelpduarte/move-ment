@@ -1,9 +1,17 @@
 {
-  "name": "gatsby-starter-default",
-  "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "name": "move-ment",
+  "description": "An alternative webapp front-end to http://move-me.mobi 's website and mobile app. Licensing: GPL-3.0-only",
+  "author": "Miguel Duarte <miguelpduarte98@gmail.com>",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "lint": "eslint --ext .js,.jsx .",
+    "lint-fix": "eslint --ext .js,.jsx . --fix",
+    "lint-staged": "lint-staged"
+  },
   "dependencies": {
     "gatsby": "^2.10.0",
     "gatsby-image": "^2.2.1",
@@ -19,25 +27,23 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "eslint": "^5.16.0",
+    "lint-staged": "^8.2.1",
+    "pre-commit": "^1.2.2",
+    "pre-push": "^0.1.1"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+  "lint-staged": {
+    "*.js": "eslint",
+    "*.jsx": "eslint"
   },
+  "pre-commit": "lint-staged",
+  "pre-push": "",
+  "license": "GPL-3.0-only",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/miguelpduarte/move-ment"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/miguelpduarte/move-ment/issues"
   }
 }
