@@ -1,99 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import { fade, makeStyles } from "@material-ui/core/styles";
-import SearchIcon from "@material-ui/icons/Search";
+import { Link as GLink } from "gatsby";
+import IconButton from "@material-ui/core/IconButton";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import { Menu as MenuIcon, Flag, DirectionsBus, Info, Star } from "@material-ui/icons";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles(theme => ({
-    grow: {
+    root: {
         flexGrow: 1,
     },
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    title: {
-        display: "none",
-        [theme.breakpoints.up("sm")]: {
-            display: "block",
-        },
-    },
-    search: {
-        position: "relative",
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        "&:hover": {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: "100%",
-        [theme.breakpoints.up("sm")]: {
-            marginLeft: theme.spacing(3),
-            width: "auto",
-        },
-    },
-    searchIcon: {
-        width: theme.spacing(7),
-        height: "100%",
-        position: "absolute",
-        pointerEvents: "none",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    inputRoot: {
+    link: {
         color: "inherit",
+        textDecoration: "none",
     },
-    inputInput: {
-        padding: theme.spacing(1, 1, 1, 7),
-        transition: theme.transitions.create("width"),
-        width: "100%",
-        [theme.breakpoints.up("md")]: {
-            width: 200,
-        },
+    title: {
+        flexGrow: 1,
+        display: "inline",
+        color: "inherit"
     },
-    sectionDesktop: {
-        display: "none",
-        [theme.breakpoints.up("md")]: {
-            display: "flex",
-        },
-    },
-    sectionMobile: {
-        display: "flex",
-        [theme.breakpoints.up("md")]: {
-            display: "none",
-        },
-    },
+    drawer: {
+        width: "17rem",
+    }
 }));
 
-export default function SearchAppBar() {
+const Navbar = () => {
     const classes = useStyles();
+    const [open, setOpen] = useState(false);
 
     return (
-        <div className={classes.grow}>
+        <>
+        <SwipeableDrawer
+            open={open}
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+        >
+            <div
+                className={classes.drawer}
+                role="presentation"
+                onClick={() => setOpen(false)}
+                onKeyDown={() => setOpen(false)}
+            >
+                <List>
+                    {[
+                        {text: "Search for Stops", href: "/", icon: Flag},
+                        {text: "Search for Lines (WIP)", href: "/lines", icon: DirectionsBus},
+                        {text: "Favorites (WIP)", href: "/favorites", icon: Star},
+                        {text: "About", href: "/about", icon: Info}
+                    ].map((item) => (
+                        <ListItem button component={GLink} to={item.href} key={item.text}>
+                            <ListItemIcon>{<item.icon/>}</ListItemIcon>
+                            <ListItemText primary={item.text} />
+                        </ListItem>
+                    ))}
+                </List>
+            </div>
+        </SwipeableDrawer>
+        <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        move-ment
-                    </Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ "aria-label": "Search" }}
-                        />
-                    </div>
-                    <div className={classes.grow} />
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu" onClick={() => setOpen(true)}>
+                        <MenuIcon />
+                    </IconButton>
+                    <GLink to="/" className={classes.link}>
+                        <Typography variant="h5" className={classes.title}>
+                            move-ment
+                        </Typography>
+                    </GLink>
                 </Toolbar>
             </AppBar>
         </div>
+        </>
     );
-}
+};
+
+export default Navbar;
