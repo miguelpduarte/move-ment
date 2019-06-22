@@ -57,6 +57,8 @@ typings/
 # gatsby files
 .cache/
 public
+# Do not remove netlify redirects file
+# !public/_redirects # Not working sadly
 
 # Mac files
 .DS_Store
