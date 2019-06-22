@@ -13,6 +13,7 @@
     "lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@material-ui/core": "^4.1.1",
     "gatsby": "^2.10.0",
     "gatsby-image": "^2.2.1",
     "gatsby-plugin-manifest": "^2.2.0",
@@ -26,10 +27,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-icons": "^3.7.0",
-    "react-typography": "^0.16.19",
-    "typography": "^0.16.19",
-    "typography-theme-de-young": "^0.16.19"
+    "react-icons": "^3.7.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

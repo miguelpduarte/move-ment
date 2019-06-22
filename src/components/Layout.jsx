@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import paddingStyles from "../css/paddings.module.css";
 import positionStyles from "../css/positions.module.css";
 import { FaHeart, FaGithub } from "react-icons/fa";
+import Helmet from "react-helmet";
 
 const Layout = ({ children }) => {
     const data = useStaticQuery(graphql`
@@ -28,6 +29,8 @@ const Layout = ({ children }) => {
                 <span>Fork me on <a href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a></span>
             </footer>
         </div>
+        {/* Including fonts for Material UI */}
+        <Helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" /></Helmet> 
       </>
     );
 };

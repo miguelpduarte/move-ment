@@ -5,12 +5,6 @@ module.exports = {
         author: "@miguelpduarte",
     },
     plugins: [
-        {
-            resolve: "gatsby-plugin-typography",
-            options: {
-                pathToConfigModule: "src/utils/typography.js",
-            },
-        },
         "gatsby-plugin-react-helmet",
         // {
         //     resolve: "gatsby-source-filesystem",
@@ -37,7 +31,6 @@ module.exports = {
                 crossOrigin: "use-credentials",
             },
         },
-
 
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
