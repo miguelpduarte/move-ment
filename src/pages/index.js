@@ -1,13 +1,12 @@
 import React from "react";
 // import { Link } from "gatsby";
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
 
 const IndexPage = () => (
     <Layout>
         <SEO title="Home" />
-        <h1>move-ment</h1>
         <p>Work in Progress!</p>
     </Layout>
 );
