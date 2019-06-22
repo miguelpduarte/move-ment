@@ -4,6 +4,8 @@
 
 An alternative webapp front-end to [http://move-me.mobi](http://move-me.mobi)'s website and mobile app. Check it out live at [https://move-ment.netlify.com](https://move-ment.netlify.com).
 
+Built using [GatsbyJS](https://www.gatsbyjs.org/).
+
 ## Reasoning
 
 *move-me*'s mobile app is extremely clunky. Its website is decent, but I don't use close to half the functionality they offer.

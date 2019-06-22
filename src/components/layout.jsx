@@ -8,6 +8,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import { FaHeart, FaGithub } from "react-icons/fa";
 
 import Header from "./header";
 import "./layout.css";
@@ -36,9 +37,9 @@ const Layout = ({ children }) => {
       >
           <main>{children}</main>
           <footer>
-          © {new Date().getFullYear()}, Built with
-              {" "}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
+              <span>Built with <FaHeart/> by <a href="https://miguelpduarte.me">@miguelpduarte</a></span>
+              <span style={{marginLeft: "0.5em", marginRight: "0.5em"}}>//</span>
+              <span>Fork me on <a href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a></span>
           </footer>
       </div>
     </>
