@@ -26,7 +26,7 @@ const StopResultsList = ({search_results}) => {
 };
 
 StopResultsList.propTypes = {
-    search_results: PropTypes.arrayOf(PropTypes.object).isRequired,
+    search_results: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default StopResultsList;

@@ -6,37 +6,34 @@ import StopResultsList from "./StopResultsList";
 import Grid from "@material-ui/core/Grid";
 import SimplePaperMessage from "./SimplePaperMessage";
 
-import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles({
-    root: {
-        margin: "0 auto",
-        flexGrow: 1
-    },
-});
+// import { makeStyles } from "@material-ui/core/styles";
+// const useStyles = makeStyles({
+//     root: {
+//         margin: "0 auto",
+//         flexGrow: 1
+//     },
+// });
 
 const SearchArea = () => {
-    const classes = useStyles();
     const [search_results, search_query, setSearchQuery, error] = useSearch(searchByStops);
 
     return (
-        <div className={classes.root}>
-            <Grid container alignItems="stretch" justify="center" spacing={6}>
-                <Grid item xs={12} md={8}>
-                    <ClearableSearchBar
-                        placeholder="Search for a Stop"
-                        search_query={search_query}
-                        setSearchQuery={setSearchQuery}
-                    />
-                </Grid>
-                <Grid item xs={12} md={8}>
-                    {error ?
-                        <SimplePaperMessage message="An error ocurred!"/>
-                        :
-                        <StopResultsList search_results={search_results} />
-                    }
-                </Grid>
+        <Grid container alignItems="stretch" justify="center" spacing={6}>
+            <Grid item xs={12} md={8}>
+                <ClearableSearchBar
+                    placeholder="Search for a Stop"
+                    search_query={search_query}
+                    setSearchQuery={setSearchQuery}
+                />
             </Grid>
-        </div>
+            <Grid item xs={12} md={8}>
+                {error ?
+                    <SimplePaperMessage message="An error ocurred!"/>
+                    :
+                    <StopResultsList search_results={search_results} />
+                }
+            </Grid>
+        </Grid>
     );
 };
 
