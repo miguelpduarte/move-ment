@@ -1,6 +1,6 @@
 // http://move-me.mobi/Find/SearchByStops?keyword=FEUP
 
-const stop_list_str_regex = /(.*?) - (.*) \[(.*)\]/; // eslint-disable-line no-useless-escape
+const stop_list_str_regex = /(.*?) - (.*) \[(.*_(.*))\]/; // eslint-disable-line no-useless-escape
 
 /**
  * Converts the remotely received stop list string to a stops array with the following keys: provider, stop_name, stop_code, raw_string
@@ -12,11 +12,12 @@ const stopListToStopsArray = (stop_list_str) => {
     // <Provider> - <Stop Name> [<Stop Code>]
     const raw_array = stop_list_str.split(";");
     return raw_array.slice(0, raw_array.length - 1).map(item => {
-        const [raw_string, provider, stop_name, stop_code] = stop_list_str_regex.exec(item);
+        const [raw_string, provider, stop_name, stop_id, stop_code] = stop_list_str_regex.exec(item);
         return {
             provider,
             stop_name,
             stop_code,
+            stop_id,
             raw_string
         };
     });
