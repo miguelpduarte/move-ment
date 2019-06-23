@@ -1,5 +1,3 @@
-import { getProviderFromStopId } from "../utils/parsing";
-
 const stop_list_str_regex = /(.*?) - (.*) \[(.*_(.*))\]/; // eslint-disable-line no-useless-escape
 
 /**
@@ -73,13 +71,9 @@ const arrivalObjectToArrivalsArray = (arrival_object) => {
  * @returns The array of next arrivals (empty if none found) - See arrivalObjectToArrivalsArray for format details
  * @throws Throws a string if there is an error in communicating with the service
  */
-export const nextArrivals = async (stop_id) => {
-    console.log("entered nextArrivals, id: ", stop_id);
-
-    const provider_code = getProviderFromStopId(stop_id);
-    console.log("provider code", provider_code);
+export const nextArrivals = async (stop_id, provider_name) => {
     // eslint-disable-next-line no-undef
-    const res = await fetch(`/api/move-me/NextArrivals/GetScheds?providerName=${provider_code}&stopCode=${stop_id}`, {
+    const res = await fetch(`/api/move-me/NextArrivals/GetScheds?providerName=${provider_name}&stopCode=${stop_id}`, {
         method: "POST",
     });
 

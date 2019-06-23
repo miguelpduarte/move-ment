@@ -6,9 +6,13 @@ import SimplePaperMessage from "./SimplePaperMessage";
 import StopScheduleTable from "./StopScheduleTable";
 import { Refresh as RefreshIcon } from "@material-ui/icons";
 
-const StopSchedule = ({stop_id}) => {
+const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     const [error, setError] = useState(null);
     const [schedule, setSchedule] = useState(() => {
+        if (!provider_name || !stop_name) {
+            setError("Invalid Stop ID!");
+            return null;
+        }
         // Starting the initial schedule getting and it being null while loading
         // TODO: Put it back inside a function, I am doing spaghett
         nextArrivals(stop_id)
@@ -27,20 +31,20 @@ const StopSchedule = ({stop_id}) => {
             setError(err);
         }
     };
-    
+
     console.log("Current schedule", schedule);
 
     return (
         <Grid container justify="center">
-            <Grid container item xs={12} md={8}>
+            <Grid container alignItems="center" item xs={12} md={8}>
                 <Grid item xs={9}>
-                    <Typography variant="h3">
+                    <Typography variant="h4">
                     Schedule for stop {stop_id}:
                     </Typography>
                 </Grid>
                 <Grid item xs={3}>
                     <IconButton onClick={() => updateStopScheduleFromId()}>
-                        <RefreshIcon/>
+                        <RefreshIcon fontSize="large" />
                     </IconButton>
                 </Grid>
             </Grid>
@@ -61,6 +65,8 @@ const StopSchedule = ({stop_id}) => {
 };
 
 StopSchedule.propTypes = {
+    provider_name: PropTypes.string.isRequired,
+    stop_name: PropTypes.string.isRequired,
     stop_id: PropTypes.string.isRequired
 };
 
