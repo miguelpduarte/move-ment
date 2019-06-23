@@ -29,6 +29,9 @@ const stopListToStopsArray = (stop_list_str) => {
  * @throws Throws a string if there is an error in communicating with the service
  */
 export const searchByStops = async (search_str) => {
+    // For testing locally (netlify redirect does not work)
+    // return stopListToStopsArray("STCP - Faculdade de Engenharia [STCP_FEUP1];STCP - Faculdade de Engenharia [STCP_FEUP2];VALPI - Porto (Feup) [VALPI_233];");
+
     // eslint-disable-next-line no-undef
     const res = await fetch(`/api/move-me/Find/SearchByStops?keyword=${search_str}`, {
         method: "POST",
@@ -41,10 +44,7 @@ export const searchByStops = async (search_str) => {
         console.log("Debug, text:", res_text);
         return stopListToStopsArray(res_text);
     } else {
-        // For testing locally (netlify redirect does not work)
-        return stopListToStopsArray("STCP - Faculdade de Engenharia [STCP_FEUP1];STCP - Faculdade de Engenharia [STCP_FEUP2];VALPI - Porto (Feup) [VALPI_233];");
-
         // Some error ocurred
-        // throw "Error in communication with move-me service!";
+        throw "Error in communication with move-me service!";
     }
 };

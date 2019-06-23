@@ -11,7 +11,8 @@ module.exports = {
         "ecmaVersion": 2018
     },
     "plugins": [
-        "react"
+        "react",
+        "react-hooks"
     ],
     "rules": {
         "indent": [
@@ -34,5 +35,7 @@ module.exports = {
         "react/jsx-uses-vars": "error",
         "no-console": "warn",
         //"no-case-declarations": "off"
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
     }
 };
