@@ -39,7 +39,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
             <Grid container alignItems="center" item xs={12} md={8}>
                 <Grid item xs={9}>
                     <Typography variant="h4">
-                    Schedule for stop {stop_id}:
+                    Schedule for {stop_name} ({provider_name}):
                     </Typography>
                 </Grid>
                 <Grid item xs={3}>
