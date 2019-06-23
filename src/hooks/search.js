@@ -10,7 +10,7 @@ const MIN_LETTERS_TO_SEARCH = 2;
  */
 export const useSearch = (api_endpoint) => {
     const [search_query, setSearchQuery] = useState("");
-    const [search_results, setSearchResults] = useState([]);
+    const [search_results, setSearchResults] = useState(null);
     const [search_timeout_id, setSearchTimeoutId] = useState(null);
     const [error, setError] = useState(null);
 

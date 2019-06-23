@@ -3,12 +3,13 @@ import { useSearch } from "../hooks/search";
 import { searchByStops } from "../requests/move_me_api";
 import ClearableSearchBar from "./ClearableSearchBar";
 import StopResultsList from "./StopResultsList";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import SimplePaperMessage from "./SimplePaperMessage";
 
+import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
     root: {
+        margin: "0 auto",
         flexGrow: 1
     },
 });
@@ -19,15 +20,15 @@ const SearchArea = () => {
 
     return (
         <div className={classes.root}>
-            <Grid container direction="column" alignContent="center" alignItems="stretch" spacing={3}>
-                <Grid item xs={12}>
+            <Grid container alignItems="stretch" justify="center" spacing={6}>
+                <Grid item xs={12} md={8}>
                     <ClearableSearchBar
                         placeholder="Search for a Stop"
                         search_query={search_query}
                         setSearchQuery={setSearchQuery}
                     />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={8}>
                     {error ?
                         <SimplePaperMessage message="An error ocurred!"/>
                         :
