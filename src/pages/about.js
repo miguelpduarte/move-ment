@@ -17,17 +17,17 @@ const AboutPage = () => {
     return (
         <Layout>
             <SEO title="About" />
-            <Container fixed>
-                <Typography className={classes.spaceTop} variant="h1">
+            <Container maxWidth="lg">
+                <Typography className={classes.spaceTop} gutterBottom variant="h2">
                 About move-ment:
                 </Typography>
-                <Typography className={classes.spaceTop} variant="body1">
+                <Typography gutterBottom variant="h5">
                 move-ment is an alternative webapp front-end to <a href="http://move-me.mobi">move-me</a>'s website and mobile app.
                 </Typography>
-                <Typography className={classes.spaceTop} variant="body2">
-                It is a work in progress, so keep in mind that some bugs and random downtime might occurr!
+                <Typography gutterBottom variant="body1">
+                It is a work in progress (and voluntary open-source one, at it), so keep in mind that some bugs and random downtime might occurr!
                 </Typography>
-                <Typography className={classes.spaceTop} variant="h6">
+                <Typography className={classes.spaceTop} gutterBottom variant="h6">
                     <span>Built with <FaHeart/> by <a href="https://miguelpduarte.me">@miguelpduarte</a></span>
                     <span style={{marginLeft: "0.5em", marginRight: "0.5em"}}>//</span>
                     <span>Check out the source code at <a href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a></span>
