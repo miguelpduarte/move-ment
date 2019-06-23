@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
-import { Typography, Container } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaHeart, FaGithub } from "react-icons/fa";
 
@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
     spaceTop: {
         marginTop: theme.spacing(2),
     },
+    test: {
+        margin: "0 auto",
+    }
 }));
 
 const AboutPage = () => {
@@ -17,22 +20,24 @@ const AboutPage = () => {
     return (
         <Layout>
             <SEO title="About" />
-            <Container maxWidth="lg">
-                <Typography className={classes.spaceTop} gutterBottom variant="h2">
-                About move-ment:
-                </Typography>
-                <Typography gutterBottom variant="h5">
-                move-ment is an alternative webapp front-end to <a href="http://move-me.mobi">move-me</a>'s website and mobile app.
-                </Typography>
-                <Typography gutterBottom variant="body1">
-                It is a work in progress (and voluntary open-source one, at it), so keep in mind that some bugs and random downtime might occurr!
-                </Typography>
-                <Typography className={classes.spaceTop} gutterBottom variant="h6">
-                    <span>Built with <FaHeart/> by <a href="https://miguelpduarte.me">@miguelpduarte</a></span>
-                    <span style={{marginLeft: "0.5em", marginRight: "0.5em"}}>//</span>
-                    <span>Check out the source code at <a href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a></span>
-                </Typography>
-            </Container>
+            <Grid container justify="center">
+                <Grid className={classes.test} item xs={12} md={8}>
+                    <Typography gutterBottom variant="h2">
+                        About move-ment:
+                    </Typography>
+                    <Typography gutterBottom variant="h5">
+                        move-ment is an alternative webapp front-end to <a href="http://move-me.mobi">move-me</a>'s website and mobile app.
+                    </Typography>
+                    <Typography gutterBottom variant="body1">
+                        It is a work in progress (and voluntary open-source one, at it), so keep in mind that some bugs and random downtime might occurr!
+                    </Typography>
+                    <Typography className={classes.spaceTop} gutterBottom variant="h6">
+                        <span>Built with <FaHeart/> by <a href="https://miguelpduarte.me">@miguelpduarte</a></span>
+                        <span style={{marginLeft: "0.5em", marginRight: "0.5em"}}>//</span>
+                        <span>Check out the source code at <a href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a></span>
+                    </Typography>
+                </Grid>
+            </Grid>
         </Layout>
     );
 };
