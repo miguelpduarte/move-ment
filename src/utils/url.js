@@ -1,0 +1,1 @@
+export const lastParamFromUrl = (url_str) => url_str.replace(/.*\//, "");

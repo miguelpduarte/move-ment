@@ -1,4 +1,4 @@
-// http://move-me.mobi/Find/SearchByStops?keyword=FEUP
+import { getProviderFromStopId } from "../utils/parsing";
 
 const stop_list_str_regex = /(.*?) - (.*) \[(.*_(.*))\]/; // eslint-disable-line no-useless-escape
 
@@ -44,6 +44,98 @@ export const searchByStops = async (search_str) => {
         const res_text = await res.text();
         console.log("Debug, text:", res_text);
         return stopListToStopsArray(res_text);
+    } else {
+        // Some error ocurred
+        throw "Error in communication with move-me service!";
+    }
+};
+
+/**
+ * Converts the remotely received arrival object to a sane arrivals array with the following keys: line, direction, time
+ * @param arrival_object The arrival object, as received from move-me's "api"
+ * @returns Array of arrivals
+ */
+const arrivalObjectToArrivalsArray = (arrival_object) => {
+    // Input is an array containing objects with properties 'Key' and 'Value', where 'Value' is [line, direction, time]
+    return arrival_object.map(item => {
+        const [line, direction, time] = item["Value"];
+        return {
+            line,
+            direction,
+            time
+        };
+    });
+};
+
+/**
+ * Makes a request to the api in order to fetch the next arrivals for a certain stop
+ * @param stop_id The id of the stop
+ * @returns The array of next arrivals (empty if none found) - See arrivalObjectToArrivalsArray for format details
+ * @throws Throws a string if there is an error in communicating with the service
+ */
+export const nextArrivals = async (stop_id) => {
+    console.log("entered nextArrivals, id: ", stop_id);
+
+    const provider_code = getProviderFromStopId(stop_id);
+    console.log("provider code", provider_code);
+    // eslint-disable-next-line no-undef
+    const res = await fetch(`/api/move-me/NextArrivals/GetScheds?providerName=${provider_code}&stopCode=${stop_id}`, {
+        method: "POST",
+    });
+
+    console.log("Debug response", res);
+
+    // Mocked for localhost dev
+
+    // const mock = JSON.parse(`[
+    //     {
+    //         "Key": 1,
+    //         "Value": [
+    //             "300",
+    //             "H.S.João Urg-prt3",
+    //             "1*"
+    //         ]
+    //     },
+    //     {
+    //         "Key": 2,
+    //         "Value": [
+    //             "204",
+    //             "Foz      -    Prt2",
+    //             "6*"
+    //         ]
+    //     },
+    //     {
+    //         "Key": 3,
+    //         "Value": [
+    //             "204",
+    //             "Foz",
+    //             "23"
+    //         ]
+    //     },
+    //     {
+    //         "Key": 4,
+    //         "Value": [
+    //             "300",
+    //             "Hosp. S. João (Urgência)",
+    //             "33"
+    //         ]
+    //     },
+    //     {
+    //         "Key": 5,
+    //         "Value": [
+    //             "204",
+    //             "Foz      -    Prt2",
+    //             "49*"
+    //         ]
+    //     }
+    // ]`);
+
+    // return arrivalObjectToArrivalsArray(mock);
+
+    if (res.ok) {
+        const res_json = await res.json();
+        console.log("Debug, json:", res_json);
+        return arrivalObjectToArrivalsArray(res_json);
     } else {
         // Some error ocurred
         throw "Error in communication with move-me service!";

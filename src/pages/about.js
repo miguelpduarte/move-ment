@@ -9,9 +9,6 @@ const useStyles = makeStyles(theme => ({
     spaceTop: {
         marginTop: theme.spacing(2),
     },
-    test: {
-        margin: "0 auto",
-    }
 }));
 
 const AboutPage = () => {
@@ -21,8 +18,8 @@ const AboutPage = () => {
         <Layout>
             <SEO title="About" />
             <Grid container justify="center">
-                <Grid className={classes.test} item xs={12} md={8}>
-                    <Typography gutterBottom variant="h2">
+                <Grid item xs={12} md={8}>
+                    <Typography gutterBottom variant="h3">
                         About move-ment:
                     </Typography>
                     <Typography gutterBottom variant="h5">
