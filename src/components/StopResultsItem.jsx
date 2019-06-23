@@ -15,7 +15,7 @@ const StopResultsItem = ({search_result}) => {
     return (
         <Card className={classes.card}>
             <CardContent>
-                <Typography variant="h5">
+                <Typography variant="h6">
                     {search_result.stop_code} | {search_result.stop_name}
                 </Typography>
                 <Typography variant="subtitle1">
