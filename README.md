@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/d8b63afe-6e19-4938-a765-e674831fb029/deploy-status)](https://app.netlify.com/sites/move-ment/deploys)
 
-An alternative webapp front-end to [http://move-me.mobi](http://move-me.mobi)'s website and mobile app. Check it out live at [https://move-ment.netlify.com](https://move-ment.netlify.com).
+An alternative webapp front-end to [http://move-me.mobi](http://move-me.mobi)'s website and mobile app. Check it out live at [https://move-ment.miguelpduarte.me](https://move-ment.miguelpduarte.me).
 
 Built using [GatsbyJS](https://www.gatsbyjs.org/).
 
