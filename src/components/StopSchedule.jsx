@@ -17,7 +17,7 @@ import { Refresh as RefreshIcon } from "@material-ui/icons";
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     const [error, setError] = useState(null);
     const [schedule, setSchedule] = useState(() => {
-        if (!provider_name || !stop_name) {
+        if (!provider_name || !stop_name || !stop_id) {
             setError("Invalid Stop ID!");
             return null;
         }
@@ -64,13 +64,13 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} md={8}>
-                {schedule ?
-                    error ?
-                        <SimplePaperMessage message={error}/>
-                        :
-                        <StopScheduleTable schedule={schedule} />
+                {error ?
+                    <SimplePaperMessage message={error}/>
                     :
-                    <React.Fragment/>
+                    schedule ?
+                        <StopScheduleTable schedule={schedule} />
+                        :
+                        <React.Fragment/>
                 }
             </Grid>
         </Grid>
