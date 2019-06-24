@@ -6,7 +6,13 @@ import { getInfoFromStopId } from "../utils/parsing";
 import StopSchedule from "./StopSchedule";
 
 const StopPageRoot = ({stop_id}) => {
-    const [provider_name, stop_name] = getInfoFromStopId(stop_id);
+    let provider_name, stop_name;
+    try {
+        [provider_name, stop_name] = getInfoFromStopId(stop_id);
+    } catch (ignored) {
+        // Contiue regardless of error, it will be detected below because the values will not be set
+        // Was having errors due to the regex not applying when the format was invalid and whatnot so this should work
+    }
 
     return (
         <Layout>

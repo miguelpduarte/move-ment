@@ -1,11 +1,3 @@
-const provider_from_stop_id_regex = /(.*)_.*/;
-
-export const getProviderFromStopId = (stop_id) => provider_from_stop_id_regex.exec(stop_id)[1];
-
-const stop_name_from_stop_id_regex = /.*_(.*)/;
-
-export const getStopNameFromStopId = (stop_id) => stop_name_from_stop_id_regex.exec(stop_id)[1];
-
 const stop_info_from_stop_id_regex = /(.*)_(.*)/;
 
 /**

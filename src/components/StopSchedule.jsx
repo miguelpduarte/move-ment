@@ -32,6 +32,12 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     // To be called via the refresh button onClick
     const updateStopScheduleFromId = async () => {
         console.log("Refreshing schedule...");
+        if (!provider_name || !stop_name) {
+            setError("Invalid Stop ID!");
+            setSchedule(null);
+            return;
+        }
+
         try {
             const new_schedule = await nextArrivals(stop_id, provider_name);
             setSchedule(new_schedule);
