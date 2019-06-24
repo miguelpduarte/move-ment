@@ -35,7 +35,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     console.log("Current schedule", schedule);
 
     return (
-        <Grid container justify="center">
+        <Grid container justify="center" spacing={1}>
             <Grid container alignItems="center" item xs={12} md={8}>
                 <Grid item xs={9}>
                     <Typography variant="h4">
@@ -51,7 +51,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
             <Grid item xs={12} md={8}>
                 {schedule ?
                     error ?
-                        <SimplePaperMessage message="An error ocurred!"/>
+                        <SimplePaperMessage message={error}/>
                         :
                         <StopScheduleTable schedule={schedule} />
                     :

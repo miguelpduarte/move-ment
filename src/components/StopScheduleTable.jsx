@@ -33,8 +33,8 @@ const StopScheduleTable = ({schedule}) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>Line</TableCell>
-                            <TableCell align="right">Direction</TableCell>
-                            <TableCell align="right">Time</TableCell>
+                            <TableCell>Direction</TableCell>
+                            <TableCell>Time</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -43,8 +43,8 @@ const StopScheduleTable = ({schedule}) => {
                                 <TableCell component="th" scope="row">
                                     {row.line}
                                 </TableCell>
-                                <TableCell align="right">{row.direction}</TableCell>
-                                <TableCell align="right">{row.time}</TableCell>
+                                <TableCell>{row.direction}</TableCell>
+                                <TableCell>{row.time}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

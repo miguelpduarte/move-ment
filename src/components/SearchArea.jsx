@@ -28,7 +28,7 @@ const SearchArea = () => {
             </Grid>
             <Grid item xs={12} md={8}>
                 {error ?
-                    <SimplePaperMessage message="An error ocurred!"/>
+                    <SimplePaperMessage message={error}/>
                     :
                     <StopResultsList search_results={search_results} />
                 }
