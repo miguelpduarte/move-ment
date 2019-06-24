@@ -6,6 +6,14 @@ import SimplePaperMessage from "./SimplePaperMessage";
 import StopScheduleTable from "./StopScheduleTable";
 import { Refresh as RefreshIcon } from "@material-ui/icons";
 
+// import { makeStyles } from "@material-ui/core/styles";
+
+// const useStyles = makeStyles({
+//     alignToEnd: {
+//         alignSelf: "flex-end"
+//     },
+// });
+
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     const [error, setError] = useState(null);
     const [schedule, setSchedule] = useState(() => {
@@ -38,12 +46,12 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     return (
         <Grid container justify="center" spacing={1}>
             <Grid container alignItems="center" item xs={12} md={8}>
-                <Grid item xs={10}>
+                <Grid item xs={11}>
                     <Typography variant="h4">
                     Schedule for {stop_name} ({provider_name}):
                     </Typography>
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs>
                     <IconButton onClick={() => updateStopScheduleFromId()}>
                         <RefreshIcon fontSize="large" />
                     </IconButton>
