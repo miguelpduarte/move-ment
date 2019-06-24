@@ -4,7 +4,7 @@ import { nextArrivals } from "../requests/move_me_api";
 import { Grid, Typography, IconButton } from "@material-ui/core";
 import SimplePaperMessage from "./SimplePaperMessage";
 import StopScheduleTable from "./StopScheduleTable";
-import { Refresh as RefreshIcon } from "@material-ui/icons";
+import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
 
 // import { makeStyles } from "@material-ui/core/styles";
 
@@ -50,17 +50,25 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     console.log("Current schedule", schedule);
 
     return (
-        <Grid container justify="center" spacing={1}>
+        <Grid container justify="center">
             <Grid container alignItems="center" item xs={12} md={8}>
-                <Grid item xs={11}>
-                    <Typography variant="h4">
+                <Grid item xs={9} sm={10}>
+                    <Typography variant="h5">
                     Schedule for {stop_name} ({provider_name}):
                     </Typography>
                 </Grid>
-                <Grid item xs>
-                    <IconButton onClick={() => updateStopScheduleFromId()}>
-                        <RefreshIcon fontSize="large" />
-                    </IconButton>
+                <Grid item xs container>
+                    <Grid item xs={6}>
+                        {/* eslint-disable-next-line no-undef */}
+                        <IconButton aria-label="Add to or Remove from Favorites" onClick={() => alert("Work in Progress")}>
+                            <StarIcon fontSize="large" />
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <IconButton aria-label="Refresh schedule" onClick={() => updateStopScheduleFromId()}>
+                            <RefreshIcon fontSize="large" />
+                        </IconButton>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid item xs={12} md={8}>
