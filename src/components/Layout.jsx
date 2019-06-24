@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 import CustomThemeProvider from "./CustomThemeProvider";
 import Navbar from "./Navbar";
-// import paddingStyles from "../css/paddings.module.css";
-// import positionStyles from "../css/positions.module.css";
 import Helmet from "react-helmet";
 
 import "./layout.css";

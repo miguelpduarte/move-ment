@@ -1,9 +1,0 @@
-.horizontal-centered {
-    margin: 0 auto;
-    max-width: 70em;
-}
-
-.flex-center-items {
-    display: flex;
-    align-items: center;
-}
