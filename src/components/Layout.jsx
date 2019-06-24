@@ -31,9 +31,7 @@ const Layout = ({ children }) => {
     return (
         <CustomThemeProvider>
             <Navbar siteTitle={data.site.siteMetadata.title}/>
-            {/* <div className={paddingStyles.horizontalSmall + " " + positionStyles.horizontalCentered}> */}
             <main className={classes.content}>{children}</main>
-            {/* </div> */}
             {/* Including fonts for Material UI */}
             <Helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" /></Helmet> 
         </CustomThemeProvider>
