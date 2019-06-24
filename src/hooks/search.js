@@ -31,6 +31,7 @@ export const useSearch = (api_endpoint) => {
         try {
             const data = await api_endpoint(search_query);
             setSearchResults(data);
+            setError(null);
         } catch(err) {
             setError(err);
         }

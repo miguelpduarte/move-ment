@@ -16,7 +16,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
         // Starting the initial schedule getting and it being null while loading
         // TODO: Put it back inside a function, I am doing spaghett
         nextArrivals(stop_id)
-            .then(new_schedule => setSchedule(new_schedule))
+            .then(new_schedule => {setSchedule(new_schedule); setError(null);})
             .catch(err => setError(err));
         return null;
     });
@@ -27,6 +27,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
         try {
             const new_schedule = await nextArrivals(stop_id);
             setSchedule(new_schedule);
+            setError(null);
         } catch (err) {
             setError(err);
         }
