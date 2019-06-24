@@ -23,7 +23,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
         }
         // Starting the initial schedule getting and it being null while loading
         // TODO: Put it back inside a function, I am doing spaghett
-        nextArrivals(stop_id)
+        nextArrivals(stop_id, provider_name)
             .then(new_schedule => {setSchedule(new_schedule); setError(null);})
             .catch(err => setError(err));
         return null;
@@ -31,9 +31,9 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
 
     // To be called via the refresh button onClick
     const updateStopScheduleFromId = async () => {
-        console.log("Updating schedule...");
+        console.log("Refreshing schedule...");
         try {
-            const new_schedule = await nextArrivals(stop_id);
+            const new_schedule = await nextArrivals(stop_id, provider_name);
             setSchedule(new_schedule);
             setError(null);
         } catch (err) {
