@@ -6,11 +6,11 @@ import { getInfoFromStopId } from "../utils/parsing";
 import StopSchedule from "./StopSchedule";
 
 const StopPageRoot = ({stop_id}) => {
-    const [stop_name, provider_name] = getInfoFromStopId(stop_id);
+    const [provider_name, stop_name] = getInfoFromStopId(stop_id);
 
     return (
         <Layout>
-            <SEO title={`Schedule for StopPageRoot ${stop_name}`} />
+            <SEO title={`Schedule for ${stop_name}`} />
             <StopSchedule stop_name={stop_name} provider_name={provider_name} stop_id={stop_id} />
         </Layout>
     );

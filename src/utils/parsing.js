@@ -9,6 +9,6 @@ export const getStopNameFromStopId = (stop_id) => stop_name_from_stop_id_regex.e
 const stop_info_from_stop_id_regex = /(.*)_(.*)/;
 
 /**
- * @returns [stop_name,provider_name]
+ * @returns [provider_name,stop_name]
  */
 export const getInfoFromStopId = (stop_id) => stop_info_from_stop_id_regex.exec(stop_id).slice(1);
