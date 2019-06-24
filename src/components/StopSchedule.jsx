@@ -15,7 +15,7 @@ import { Refresh as RefreshIcon } from "@material-ui/icons";
 // });
 
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
-    const [error, setError] = useState(null);
+    const [error, setError] = useState("");
     const [schedule, setSchedule] = useState(() => {
         if (!provider_name || !stop_name || !stop_id) {
             setError("Invalid Stop ID!");
@@ -41,7 +41,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
         try {
             const new_schedule = await nextArrivals(stop_id, provider_name);
             setSchedule(new_schedule);
-            setError(null);
+            setError("");
         } catch (err) {
             setError(err);
         }

@@ -5,6 +5,8 @@ module.exports = {
         author: "@miguelpduarte",
     },
     plugins: [
+        // See: https://github.com/hupe1980/gatsby-plugin-material-ui/
+        "gatsby-plugin-material-ui",
         "gatsby-plugin-react-helmet",
         // {
         //     resolve: "gatsby-source-filesystem",

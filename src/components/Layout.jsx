@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { CssBaseline } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useStaticQuery, graphql } from "gatsby";
 import CustomThemeProvider from "./CustomThemeProvider";
 import Navbar from "./Navbar";
 import Helmet from "react-helmet";
-
-import "./layout.css";
 
 const useStyles = makeStyles(theme => ({
     content: {
@@ -30,6 +29,7 @@ const Layout = ({ children }) => {
 
     return (
         <CustomThemeProvider>
+            <CssBaseline/>
             <Navbar siteTitle={data.site.siteMetadata.title}/>
             <main className={classes.content}>{children}</main>
             {/* Including fonts for Material UI */}

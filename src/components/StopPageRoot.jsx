@@ -16,7 +16,7 @@ const StopPageRoot = ({stop_id}) => {
 
     return (
         <Layout>
-            <SEO title={`Schedule for ${stop_name}`} />
+            <SEO title={stop_name ? `Schedule for ${stop_name}` : "Invalid Stop ID"} />
             <StopSchedule stop_name={stop_name} provider_name={provider_name} stop_id={stop_id} />
         </Layout>
     );

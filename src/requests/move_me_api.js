@@ -31,20 +31,22 @@ export const searchByStops = async (search_str) => {
     // For testing locally (netlify redirect does not work)
     // return stopListToStopsArray("STCP - Faculdade de Engenharia [STCP_FEUP1];STCP - Faculdade de Engenharia [STCP_FEUP2];VALPI - Porto (Feup) [VALPI_233];");
 
-    // eslint-disable-next-line no-undef
-    const res = await fetch(`/api/move-me/Find/SearchByStops?keyword=${search_str}`, {
-        method: "POST",
-    });
-
-    console.log("Debug response", res);
-
-    if (res.ok) {
-        const res_text = await res.text();
-        console.log("Debug, text:", res_text);
-        return stopListToStopsArray(res_text);
-    } else {
-        // Some error ocurred
-        throw "Error in communication with move-me service!";
+    try {
+        // eslint-disable-next-line no-undef
+        const res = await fetch(`/api/move-me/Find/SearchByStops?keyword=${search_str}`, {
+            method: "POST",
+        });
+        
+        if (res.ok) {
+            const res_text = await res.text();
+            return stopListToStopsArray(res_text);
+        } else {
+            // Some error ocurred
+            throw "Error in communication with move-me service!";
+        }
+    } catch(err) {
+        console.error("error in searchByStops", err);
+        throw "Error searching for stops!";
     }
 };
 
@@ -72,66 +74,69 @@ const arrivalObjectToArrivalsArray = (arrival_object) => {
  * @throws Throws a string if there is an error in communicating with the service
  */
 export const nextArrivals = async (stop_id, provider_name) => {
+    try {
     // eslint-disable-next-line no-undef
-    const res = await fetch(`/api/move-me/NextArrivals/GetScheds?providerName=${provider_name}&stopCode=${stop_id}`, {
-        method: "POST",
-    });
+        const res = await fetch(`/api/move-me/NextArrivals/GetScheds?providerName=${provider_name}&stopCode=${stop_id}`, {
+            method: "POST",
+        });
 
-    console.log("Debug response", res);
+        // Mock data for localhost dev
+        // const mock = JSON.parse(`[
+        //     {
+        //         "Key": 1,
+        //         "Value": [
+        //             "300",
+        //             "H.S.João Urg-prt3",
+        //             "1*"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 2,
+        //         "Value": [
+        //             "204",
+        //             "Foz      -    Prt2",
+        //             "6*"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 3,
+        //         "Value": [
+        //             "204",
+        //             "Foz",
+        //             "23"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 4,
+        //         "Value": [
+        //             "300",
+        //             "Hosp. S. João (Urgência)",
+        //             "33"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 5,
+        //         "Value": [
+        //             "204",
+        //             "Foz      -    Prt2",
+        //             "49*"
+        //         ]
+        //     }
+        // ]`);
 
-    // Mock data for localhost dev
-    // const mock = JSON.parse(`[
-    //     {
-    //         "Key": 1,
-    //         "Value": [
-    //             "300",
-    //             "H.S.João Urg-prt3",
-    //             "1*"
-    //         ]
-    //     },
-    //     {
-    //         "Key": 2,
-    //         "Value": [
-    //             "204",
-    //             "Foz      -    Prt2",
-    //             "6*"
-    //         ]
-    //     },
-    //     {
-    //         "Key": 3,
-    //         "Value": [
-    //             "204",
-    //             "Foz",
-    //             "23"
-    //         ]
-    //     },
-    //     {
-    //         "Key": 4,
-    //         "Value": [
-    //             "300",
-    //             "Hosp. S. João (Urgência)",
-    //             "33"
-    //         ]
-    //     },
-    //     {
-    //         "Key": 5,
-    //         "Value": [
-    //             "204",
-    //             "Foz      -    Prt2",
-    //             "49*"
-    //         ]
-    //     }
-    // ]`);
+        // /* eslint-disable no-unreachable */
+        // return arrivalObjectToArrivalsArray(mock);
 
-    // /* eslint-disable no-unreachable */
-    // return arrivalObjectToArrivalsArray(mock);
-
-    if (res.ok) {
-        const res_json = await res.json();
-        console.log("Debug, json:", res_json);
-        return arrivalObjectToArrivalsArray(res_json);
-    } else {
+        if (res.ok && res.headers.get("Content-Type").includes("application/json")) {
+            const res_json = await res.json();
+            console.log("Debug, json:", res_json);
+            return arrivalObjectToArrivalsArray(res_json);
+        } else {
         // Some error ocurred
-        throw "Error in communication with move-me service!";
+            throw "Error in communication with move-me service!";
+        }
+    } catch(err) {
+        console.error("error in nextArrivals", err);
+        throw "Error getting next arrivals!";
     }
 };
