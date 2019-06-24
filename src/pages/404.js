@@ -11,7 +11,7 @@ const useStyle = makeStyles({
     },
     link: {
         color: "inherit",
-        textDecoration: "none",
+        // textDecoration: "none",
     },
 });
 
@@ -30,8 +30,8 @@ const NotFoundPage = () => {
                         This page does not exist!
                     </Typography>
                     <Link className={classes.link} to="/">
-                        <Typography className={classes.text} variant="body2">
-                        Back to the homepage!
+                        <Typography className={classes.text} variant="body1">
+                        > Get me back home!
                         </Typography>
                     </Link>
                 </Grid>
