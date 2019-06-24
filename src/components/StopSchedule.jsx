@@ -38,12 +38,12 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     return (
         <Grid container justify="center" spacing={1}>
             <Grid container alignItems="center" item xs={12} md={8}>
-                <Grid item xs={9}>
+                <Grid item xs={10}>
                     <Typography variant="h4">
                     Schedule for {stop_name} ({provider_name}):
                     </Typography>
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item xs={2}>
                     <IconButton onClick={() => updateStopScheduleFromId()}>
                         <RefreshIcon fontSize="large" />
                     </IconButton>
