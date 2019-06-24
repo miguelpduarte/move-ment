@@ -24,11 +24,8 @@ const StopResultsItem = ({search_result}) => {
                     <Typography variant="h6">
                         {search_result.stop_code} | {search_result.stop_name}
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle1">
                         {search_result.provider}
-                    </Typography>
-                    <Typography variant="body2">
-                    Debug: {search_result.raw_string}
                     </Typography>
                 </CardContent>
             </Card>
