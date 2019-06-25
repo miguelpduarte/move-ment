@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { nextArrivals } from "../requests/move_me_api";
-import { Grid, Typography, IconButton } from "@material-ui/core";
+import { Grid, Typography, IconButton, LinearProgress } from "@material-ui/core";
 import SimplePaperMessage from "./SimplePaperMessage";
 import StopScheduleTable from "./StopScheduleTable";
 import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
@@ -15,26 +15,31 @@ import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
 // });
 
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
+    const [loading, setLoading] = useState(false); // TODO: You're here!
     const [error, setError] = useState("");
     const [schedule, setSchedule] = useState(() => {
         // Starting the initial schedule getting and it being null while loading
         // TODO: Put it back inside a function, I am doing spaghett
+        setLoading(true);
         nextArrivals(stop_id, provider_name)
-            .then(new_schedule => {setSchedule(new_schedule); setError(null);})
-            .catch(err => setError(err));
+            .then(new_schedule => {setLoading(false); setSchedule(new_schedule); setError(null);})
+            .catch(err => {setLoading(false); setError(err);});
         return null;
     });
 
     // To be called via the refresh button onClick
     const updateStopScheduleFromId = async () => {
         console.log("Refreshing schedule...");
+        setLoading(true);
 
         try {
             const new_schedule = await nextArrivals(stop_id, provider_name);
             setSchedule(new_schedule);
             setError("");
+            setLoading(false);
         } catch (err) {
             setError(err);
+            setLoading(false);
         }
     };
 
@@ -63,6 +68,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} md={8}>
+                {loading ? <LinearProgress/> : <React.Fragment/>}
                 {error ?
                     <SimplePaperMessage message={error}/>
                     :
