@@ -17,10 +17,6 @@ import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     const [error, setError] = useState("");
     const [schedule, setSchedule] = useState(() => {
-        if (!provider_name || !stop_name || !stop_id) {
-            setError("Invalid Stop ID!");
-            return null;
-        }
         // Starting the initial schedule getting and it being null while loading
         // TODO: Put it back inside a function, I am doing spaghett
         nextArrivals(stop_id, provider_name)
@@ -32,11 +28,6 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     // To be called via the refresh button onClick
     const updateStopScheduleFromId = async () => {
         console.log("Refreshing schedule...");
-        if (!provider_name || !stop_name) {
-            setError("Invalid Stop ID!");
-            setSchedule(null);
-            return;
-        }
 
         try {
             const new_schedule = await nextArrivals(stop_id, provider_name);
