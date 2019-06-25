@@ -37,12 +37,21 @@ const AboutPage = () => {
                             <Typography gutterBottom variant="body1">
                             It is a work in progress (and voluntary open-source one, at it), so keep in mind that some bugs and random downtime might occurr!
                             </Typography>
-                            <Typography gutterBottom className={classes.spaceTop} variant="h6">
-                            Built with <FaHeart/> by <a className={classes.link} href="https://miguelpduarte.me">@miguelpduarte</a>
+                            <Typography className={classes.spaceTop} variant="overline">
+                            Found a problem or have a suggestion? <a className={classes.link} href="https://github.com/miguelpduarte/move-ment/issues">Submit an issue!</a>
                             </Typography>
-                            <Typography variant="h6">
-                            Check out the source code at <a className={classes.link} href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a>
-                            </Typography>
+                            <Grid container justify="space-around" className={classes.spaceTop}>
+                                <Grid item xs={12} md={6}>
+                                    <Typography variant="h6">
+                                    Built with <FaHeart/> by <a className={classes.link} href="https://miguelpduarte.me">@miguelpduarte</a>
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <Typography variant="h6">
+                                    Check out the source code at <a className={classes.link} href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a>
+                                    </Typography>
+                                </Grid>
+                            </Grid>
                         </CardContent>
                     </Card>
                 </Grid>
