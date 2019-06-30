@@ -15,7 +15,7 @@ const StopsList = ({stops, no_items}) => {
     const classes = useStyles();
 
     return (
-        <Grid container justify="center" spacing={3}>
+        <Grid container justify="center">
             {stops ?
                 stops.length === 0 ?
                     <Grid item xs={12}>

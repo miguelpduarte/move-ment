@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TIMEOUT_TO_SEARCH_MS = 200;
+const TIMEOUT_TO_SEARCH_MS = 300;
 const MIN_LETTERS_TO_SEARCH = 2;
 
 /**
