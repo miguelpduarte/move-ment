@@ -32,7 +32,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     return (
         <Grid container justify="center">
             <Grid container alignItems="center" item xs={12} md={8}>
-                <Grid item xs={9} sm={10}>
+                <Grid item xs={8} sm={10}>
                     <Typography variant="h4">
                         {stop_name} ({provider_name}):
                     </Typography>
