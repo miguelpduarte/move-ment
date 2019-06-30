@@ -81,51 +81,51 @@ export const nextArrivals = async (stop_id, provider_name) => {
         });
 
         // Mock data for localhost dev
-        const mock = JSON.parse(`[
-            {
-                "Key": 1,
-                "Value": [
-                    "300",
-                    "H.S.João Urg-prt3",
-                    "1*"
-                ]
-            },
-            {
-                "Key": 2,
-                "Value": [
-                    "204",
-                    "Foz      -    Prt2",
-                    "6*"
-                ]
-            },
-            {
-                "Key": 3,
-                "Value": [
-                    "204",
-                    "Foz",
-                    "23"
-                ]
-            },
-            {
-                "Key": 4,
-                "Value": [
-                    "300",
-                    "Hosp. S. João (Urgência)",
-                    "33"
-                ]
-            },
-            {
-                "Key": 5,
-                "Value": [
-                    "204",
-                    "Foz      -    Prt2",
-                    "49*"
-                ]
-            }
-        ]`);
+        // const mock = JSON.parse(`[
+        //     {
+        //         "Key": 1,
+        //         "Value": [
+        //             "300",
+        //             "H.S.João Urg-prt3",
+        //             "1*"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 2,
+        //         "Value": [
+        //             "204",
+        //             "Foz      -    Prt2",
+        //             "6*"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 3,
+        //         "Value": [
+        //             "204",
+        //             "Foz",
+        //             "23"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 4,
+        //         "Value": [
+        //             "300",
+        //             "Hosp. S. João (Urgência)",
+        //             "33"
+        //         ]
+        //     },
+        //     {
+        //         "Key": 5,
+        //         "Value": [
+        //             "204",
+        //             "Foz      -    Prt2",
+        //             "49*"
+        //         ]
+        //     }
+        // ]`);
 
-        /* eslint-disable no-unreachable */
-        return arrivalObjectToArrivalsArray(mock);
+        // /* eslint-disable no-unreachable */
+        // return arrivalObjectToArrivalsArray(mock);
 
         if (res.ok && res.headers.get("Content-Type").includes("application/json")) {
             const res_json = await res.json();
