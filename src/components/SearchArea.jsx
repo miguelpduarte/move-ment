@@ -2,7 +2,7 @@ import React from "react";
 import { useSearch } from "../hooks/search";
 import { searchByStops } from "../requests/move_me_api";
 import ClearableSearchBar from "./ClearableSearchBar";
-import StopResultsList from "./StopResultsList";
+import StopsList from "./StopsList";
 import { Grid, LinearProgress } from "@material-ui/core";
 import SimplePaperMessage from "./SimplePaperMessage";
 
@@ -31,7 +31,7 @@ const SearchArea = () => {
                 {error ?
                     <SimplePaperMessage message={error}/>
                     :
-                    <StopResultsList search_results={search_results} />
+                    <StopsList stops={search_results} />
                 }
             </Grid>
         </Grid>

@@ -14,18 +14,18 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const StopResultsItem = ({search_result}) => {
+const StopListItem = ({stop}) => {
     const classes = useStyles();
 
     return (
-        <Link className={classes.link} to={`/stop/${search_result.stop_id}`}>
+        <Link className={classes.link} to={`/stop/${stop.stop_id}`}>
             <Card className={classes.card}>
                 <CardContent>
                     <Typography variant="h6">
-                        {search_result.stop_code} | {search_result.stop_name}
+                        {stop.stop_code} | {stop.stop_name}
                     </Typography>
                     <Typography variant="subtitle1">
-                        {search_result.provider}
+                        {stop.provider}
                     </Typography>
                 </CardContent>
             </Card>
@@ -33,8 +33,13 @@ const StopResultsItem = ({search_result}) => {
     );
 };
 
-StopResultsItem.propTypes = {
-    search_result: PropTypes.object.isRequired,
+StopListItem.propTypes = {
+    stop: PropTypes.exact({
+        stop_id: PropTypes.string.isRequired,
+        stop_code: PropTypes.string.isRequired,
+        stop_name: PropTypes.string.isRequired,
+        provider: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
-export default StopResultsItem;
+export default StopListItem;
