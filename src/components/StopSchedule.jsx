@@ -51,7 +51,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} md={8}>
-                {loading ? <LinearProgress/> : <React.Fragment/>}
+                {!loading ? <LinearProgress/> : <React.Fragment/>}
                 {error ?
                     <SimplePaperMessage message={error}/>
                     :
