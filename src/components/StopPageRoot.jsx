@@ -5,6 +5,7 @@ import SEO from "./Seo";
 import { getInfoFromStopId } from "../utils/parsing";
 import StopSchedule from "./StopSchedule";
 import SimplePaperMessage from "./SimplePaperMessage";
+import { Grid } from "@material-ui/core";
 
 const StopPageRoot = ({stop_id}) => {
     const [loading, setLoading] = useState(true);
@@ -36,7 +37,11 @@ const StopPageRoot = ({stop_id}) => {
                     <React.Fragment/>
                     :
                     error ?
-                        <SimplePaperMessage message={"Invalid Stop ID"}/>
+                        <Grid container justify="center">
+                            <Grid item xs={12} md={8}>
+                                <SimplePaperMessage message={"Invalid Stop ID"}/>
+                            </Grid>
+                        </Grid>
                         :
                         <StopSchedule stop_name={stop_info.stop_name} provider_name={stop_info.provider_name} stop_id={stop_id} />
                 }

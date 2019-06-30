@@ -15,7 +15,7 @@ import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
 // });
 
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
-    const [loading, setLoading] = useState(false); // TODO: You're here!
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [schedule, setSchedule] = useState(() => {
         // Starting the initial schedule getting and it being null while loading

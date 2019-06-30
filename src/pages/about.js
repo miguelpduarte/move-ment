@@ -5,7 +5,7 @@ import { Typography, Grid, Card, CardContent } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { FaHeart, FaGithub } from "react-icons/fa";
 
-const useStyles = makeStyles(theme => {console.log(theme); return ({
+const useStyles = makeStyles(theme => {console.log("themeroo0", theme); return ({
     spaceTop: {
         marginTop: theme.spacing(2),
     },
