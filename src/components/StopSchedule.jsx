@@ -9,11 +9,14 @@ import { useApiEndpoint } from "../hooks/api";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
-    centerIcons: {
+const useStyles = makeStyles(theme => ({
+    iconsContainer: {
         textAlign: "center"
     },
-});
+    scheduleHeader: {
+        marginBottom: theme.spacing(1),
+    },
+}));
 
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     const [schedule, error, loading, hitApiEndpoint] = useApiEndpoint(nextArrivals);
@@ -31,13 +34,13 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
 
     return (
         <Grid container justify="center">
-            <Grid container alignItems="center" item xs={12} md={8}>
+            <Grid container alignItems="center" item xs={12} md={8} className={classes.scheduleHeader}>
                 <Grid item xs={8} sm={10}>
                     <Typography variant="h4">
                         {stop_name} ({provider_name}):
                     </Typography>
                 </Grid>
-                <Grid item xs container className={classes.centerIcons}>
+                <Grid item xs container className={classes.iconsContainer}>
                     <Grid item xs={6}>
                         {/* eslint-disable-next-line no-undef */}
                         <IconButton aria-label="Add to or Remove from Favorites" onClick={() => alert("Work in Progress")}>
