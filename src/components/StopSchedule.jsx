@@ -7,16 +7,17 @@ import StopScheduleTable from "./StopScheduleTable";
 import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
 import { useApiEndpoint } from "../hooks/api";
 
-// import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-// const useStyles = makeStyles({
-//     alignToEnd: {
-//         alignSelf: "flex-end"
-//     },
-// });
+const useStyles = makeStyles({
+    centerIcons: {
+        textAlign: "center"
+    },
+});
 
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
     const [schedule, error, loading, hitApiEndpoint] = useApiEndpoint(nextArrivals);
+    const classes = useStyles();
 
     useEffect(() => {
         // To only run this hook for the initial update (further updates are done via the button callback)
@@ -32,11 +33,11 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
         <Grid container justify="center">
             <Grid container alignItems="center" item xs={12} md={8}>
                 <Grid item xs={9} sm={10}>
-                    <Typography variant="h5">
-                    Schedule for {stop_name} ({provider_name}):
+                    <Typography variant="h4">
+                        {stop_name} ({provider_name}):
                     </Typography>
                 </Grid>
-                <Grid item xs container>
+                <Grid item xs container className={classes.centerIcons}>
                     <Grid item xs={6}>
                         {/* eslint-disable-next-line no-undef */}
                         <IconButton aria-label="Add to or Remove from Favorites" onClick={() => alert("Work in Progress")}>
