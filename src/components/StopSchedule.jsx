@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { nextArrivals } from "../requests/move_me_api";
 import { Grid, Typography, IconButton, LinearProgress } from "@material-ui/core";
 import SimplePaperMessage from "./SimplePaperMessage";
 import StopScheduleTable from "./StopScheduleTable";
 import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
+import { useApiEndpoint } from "../hooks/api";
 
 // import { makeStyles } from "@material-ui/core/styles";
 
@@ -15,35 +16,17 @@ import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
 // });
 
 const StopSchedule = ({provider_name, stop_name, stop_id}) => {
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [schedule, setSchedule] = useState(() => {
-        // Starting the initial schedule getting and it being null while loading
-        // TODO: Put it back inside a function, I am doing spaghett
-        setLoading(true);
-        nextArrivals(stop_id, provider_name)
-            .then(new_schedule => {setLoading(false); setSchedule(new_schedule); setError(null);})
-            .catch(err => {setLoading(false); setError(err);});
-        return null;
-    });
+    const [schedule, error, loading, hitApiEndpoint] = useApiEndpoint(nextArrivals);
 
-    // To be called via the refresh button onClick
-    const updateStopScheduleFromId = async () => {
-        console.log("Refreshing schedule...");
-        setLoading(true);
-
-        try {
-            const new_schedule = await nextArrivals(stop_id, provider_name);
-            setSchedule(new_schedule);
-            setError("");
-            setLoading(false);
-        } catch (err) {
-            setError(err);
-            setLoading(false);
+    useEffect(() => {
+        // To only run this hook for the initial update (further updates are done via the button callback)
+        // For the initial update it is necessary to:
+        // - not have either a schedule or an error (after hitting the endpoint for the first time we will have one of the two)
+        // - not be loading -> prevents nested re-render loop (recursive stackoverflow)
+        if (!(schedule || error) && !loading) {
+            hitApiEndpoint(stop_id, provider_name);
         }
-    };
-
-    console.log("Current schedule", schedule);
+    }, [stop_id, provider_name, hitApiEndpoint, loading, schedule, error]);
 
     return (
         <Grid container justify="center">
@@ -61,7 +44,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
                         </IconButton>
                     </Grid>
                     <Grid item xs={6}>
-                        <IconButton aria-label="Refresh schedule" onClick={() => updateStopScheduleFromId()}>
+                        <IconButton aria-label="Refresh schedule" onClick={() => hitApiEndpoint(stop_id, provider_name)}>
                             <RefreshIcon fontSize="large" />
                         </IconButton>
                     </Grid>
