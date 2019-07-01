@@ -1,8 +1,10 @@
 const FAVORITE_KEY_LOCALSTORAGE = "favorite_stops";
 
+/// Note: Have to use 'typeof window !== 'undefined' &&' before every localStorage usage because of gatsby optimizations, see https://github.com/gatsbyjs/gatsby/issues/14480
+
 const saveFavoritesToLocalStorage = (favorites) => {
     // eslint-disable-next-line no-undef
-    localStorage.setItem(FAVORITE_KEY_LOCALSTORAGE, JSON.stringify(favorites));
+    typeof window !== "undefined" && localStorage.setItem(FAVORITE_KEY_LOCALSTORAGE, JSON.stringify(favorites));
 };
 
 /// Schema for favorites (example for STCP's FEUP2):
@@ -44,5 +46,5 @@ export const removeFromFavorites = (stop_id) => {
 
 export const getFavorites = () => {
     // The default value returned is an empty array to not break anything, for when the local storage key has not been set yet with any value
-    return JSON.parse(localStorage.getItem(FAVORITE_KEY_LOCALSTORAGE)) || []; // eslint-disable-line no-undef
+    return JSON.parse(typeof window !== "undefined" && localStorage.getItem(FAVORITE_KEY_LOCALSTORAGE)) || []; // eslint-disable-line no-undef
 };
