@@ -3,22 +3,22 @@ import PropTypes from "prop-types";
 import Layout from "./Layout";
 import SEO from "./Seo";
 import { getInfoFromStopId } from "../utils/parsing";
-import StopSchedule from "./StopSchedule";
+import StopSchedule from "./Schedule/StopSchedule";
 import SimplePaperMessage from "./SimplePaperMessage";
 import { Grid } from "@material-ui/core";
 
 const StopPageRoot = ({stop_id}) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [stop_info, setStopInfo] = useState({provider_name: "", stop_name: ""});
+    const [stop_info, setStopInfo] = useState({provider_name: "", stop_code: ""});
     
     useEffect(() => {
         try {
-            const [provider_name, stop_name] = getInfoFromStopId(stop_id);
+            const [provider_name, stop_code] = getInfoFromStopId(stop_id);
             setError(false);
             setStopInfo({
                 provider_name,
-                stop_name
+                stop_code
             });
             setLoading(false);
         } catch (ignored) {
@@ -31,7 +31,7 @@ const StopPageRoot = ({stop_id}) => {
 
     return (
         <Layout>
-            <SEO title={error ? "Invalid Stop ID" : `Schedule for ${stop_info.stop_name}`} />
+            <SEO title={error ? "Invalid Stop ID" : `Schedule for ${stop_info.stop_code}`} />
             <>
                 {loading ?
                     <React.Fragment/>
@@ -43,7 +43,7 @@ const StopPageRoot = ({stop_id}) => {
                             </Grid>
                         </Grid>
                         :
-                        <StopSchedule stop_name={stop_info.stop_name} provider_name={stop_info.provider_name} stop_id={stop_id} />
+                        <StopSchedule stop_code={stop_info.stop_code} provider_name={stop_info.provider_name} stop_id={stop_id} />
                 }
             </>
         </Layout>

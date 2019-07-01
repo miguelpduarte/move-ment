@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Paper, TableRow, TableHead, TableCell, TableBody, Table } from "@material-ui/core";
-import SimplePaperMessage from "./SimplePaperMessage";
+import SimplePaperMessage from "../SimplePaperMessage";
 
 const StopScheduleTable = ({schedule}) => {
 

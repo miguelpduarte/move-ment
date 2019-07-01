@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { nextArrivals } from "../requests/move_me_api";
+import { useApiEndpoint } from "../../hooks/api";
+import { useFavoriteStop } from "../../hooks/favorites";
+import { nextArrivals } from "../../requests/move_me_api";
 import { Grid, Typography, IconButton, LinearProgress } from "@material-ui/core";
-import SimplePaperMessage from "./SimplePaperMessage";
+import SimplePaperMessage from "../SimplePaperMessage";
 import StopScheduleTable from "./StopScheduleTable";
-import { Refresh as RefreshIcon, Star as StarIcon } from "@material-ui/icons";
-import { useApiEndpoint } from "../hooks/api";
-
+import { Refresh as RefreshIcon, Star as StarIcon, StarBorder as StarBorderIcon } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -18,8 +18,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const StopSchedule = ({provider_name, stop_name, stop_id}) => {
+const StopSchedule = ({provider_name, stop_code, stop_id}) => {
     const [schedule, error, loading, hitApiEndpoint] = useApiEndpoint(nextArrivals);
+    const [favorited, toggleFavoriteState] = useFavoriteStop(stop_id, stop_code, provider_name);
     const classes = useStyles();
 
     useEffect(() => {
@@ -37,14 +38,18 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
             <Grid container alignItems="center" item xs={12} md={8} className={classes.scheduleHeader}>
                 <Grid item xs={8} sm={10}>
                     <Typography variant="h4">
-                        {stop_name} ({provider_name}):
+                        {stop_code} ({provider_name}):
                     </Typography>
                 </Grid>
                 <Grid item xs container className={classes.iconsContainer}>
                     <Grid item xs={6}>
                         {/* eslint-disable-next-line no-undef */}
-                        <IconButton aria-label="Add to or Remove from Favorites" onClick={() => alert("Work in Progress")}>
-                            <StarIcon fontSize="large" />
+                        <IconButton aria-label="Add to or Remove from Favorites" onClick={toggleFavoriteState}>
+                            {favorited ? 
+                                <StarIcon fontSize="large" />
+                                :
+                                <StarBorderIcon fontSize="large" />
+                            }
                         </IconButton>
                     </Grid>
                     <Grid item xs={6}>
@@ -73,7 +78,7 @@ const StopSchedule = ({provider_name, stop_name, stop_id}) => {
 
 StopSchedule.propTypes = {
     provider_name: PropTypes.string.isRequired,
-    stop_name: PropTypes.string.isRequired,
+    stop_code: PropTypes.string.isRequired,
     stop_id: PropTypes.string.isRequired
 };
 

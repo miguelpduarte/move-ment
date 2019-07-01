@@ -55,7 +55,7 @@ const Navbar = () => {
                     {[
                         {text: "Search for Stops", href: "/", icon: Flag},
                         {text: "Search for Lines (WIP)", href: "/lines", icon: DirectionsBus},
-                        {text: "Favorites (WIP)", href: "/favorites", icon: Star},
+                        {text: "Favorites", href: "/favorites", icon: Star},
                         {text: "About", href: "/about", icon: Info}
                     ].map((item) => (
                         <ListItem button component={GLink} to={item.href} key={item.text}>
