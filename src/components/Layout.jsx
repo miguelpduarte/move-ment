@@ -1,20 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { CssBaseline } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
 import { useStaticQuery, graphql } from "gatsby";
-import CustomThemeProvider from "./CustomThemeProvider";
 import Navbar from "./Navbar";
 import Helmet from "react-helmet";
+import { isDarkModeEnabled } from "../utils/darkModeStateManager";
+import calcTheme from "../theme";
+import MainComponent from "./MainComponent";
 
-const useStyles = makeStyles(theme => ({
-    content: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-    },
-}));
+// TODO: Switch to Redux or something simillar to be able to change the theme without need a full page reload
+const theme = calcTheme(isDarkModeEnabled());
 
-const Layout = ({ children }) => {
+
+const Layout = ({children}) => {
     const data = useStaticQuery(graphql`
       query SiteTitleQuery {
         site {
@@ -25,16 +24,16 @@ const Layout = ({ children }) => {
       }
     `);
 
-    const classes = useStyles();
 
     return (
-        <CustomThemeProvider>
+        <ThemeProvider theme={theme}>
             <CssBaseline/>
             <Navbar siteTitle={data.site.siteMetadata.title}/>
-            <main className={classes.content}>{children}</main>
+            {/* Using a separate component to avoid problems with using classes before the theme is set */}
+            <MainComponent children={children} />
             {/* Including fonts for Material UI */}
             <Helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" /></Helmet> 
-        </CustomThemeProvider>
+        </ThemeProvider>
     );
 };
 

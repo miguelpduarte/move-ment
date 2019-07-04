@@ -11,6 +11,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { Menu as MenuIcon, Flag, DirectionsBus, Info, Star } from "@material-ui/icons";
 import ListItemText from "@material-ui/core/ListItemText";
+import DarkModeSwitch from "./DarkModeSwitch";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -63,6 +64,8 @@ const Navbar = () => {
                             <ListItemText primary={item.text} />
                         </ListItem>
                     ))}
+                    
+                    <DarkModeSwitch/>
                 </List>
             </div>
         </SwipeableDrawer>
