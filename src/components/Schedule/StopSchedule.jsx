@@ -1,27 +1,14 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { useApiEndpoint } from "../../hooks/api";
-import { useFavoriteStop } from "../../hooks/favorites";
 import { nextArrivals } from "../../requests/move_me_api";
-import { Grid, Typography, IconButton, LinearProgress } from "@material-ui/core";
+import { Grid, LinearProgress } from "@material-ui/core";
 import SimplePaperMessage from "../SimplePaperMessage";
+import StopScheduleHeader from "./StopScheduleHeader";
 import StopScheduleTable from "./StopScheduleTable";
-import { Refresh as RefreshIcon, Star as StarIcon, StarBorder as StarBorderIcon } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles(theme => ({
-    iconsContainer: {
-        textAlign: "center"
-    },
-    scheduleHeader: {
-        marginBottom: theme.spacing(1),
-    },
-}));
 
 const StopSchedule = ({provider_name, stop_code, stop_id}) => {
     const [schedule, error, loading, hitApiEndpoint] = useApiEndpoint(nextArrivals);
-    const [favorited, toggleFavoriteState] = useFavoriteStop(stop_id, stop_code, provider_name);
-    const classes = useStyles();
 
     useEffect(() => {
         // To only run this hook for the initial update (further updates are done via the button callback)
@@ -35,31 +22,13 @@ const StopSchedule = ({provider_name, stop_code, stop_id}) => {
 
     return (
         <Grid container justify="center">
-            <Grid container alignItems="center" item xs={12} md={8} className={classes.scheduleHeader}>
-                <Grid item xs={8} sm={10}>
-                    <Typography variant="h4">
-                        {stop_code} ({provider_name}):
-                    </Typography>
-                </Grid>
-                <Grid item xs container className={classes.iconsContainer}>
-                    <Grid item xs={6}>
-                        {/* eslint-disable-next-line no-undef */}
-                        <IconButton aria-label="Add to or Remove from Favorites" onClick={toggleFavoriteState}>
-                            {favorited ? 
-                                <StarIcon fontSize="large" />
-                                :
-                                <StarBorderIcon fontSize="large" />
-                            }
-                        </IconButton>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <IconButton aria-label="Refresh schedule" onClick={() => hitApiEndpoint(stop_id, provider_name)}>
-                            <RefreshIcon fontSize="large" />
-                        </IconButton>
-                    </Grid>
-                </Grid>
-            </Grid>
             <Grid item xs={12} md={8}>
+                <StopScheduleHeader
+                    stop_id={stop_id}
+                    stop_code={stop_code}
+                    provider_name={provider_name}
+                    refreshSchedule={() => hitApiEndpoint(stop_id, provider_name)}
+                />
                 {loading ? <LinearProgress/> : <React.Fragment/>}
                 {error ?
                     <SimplePaperMessage message={error}/>

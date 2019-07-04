@@ -1,15 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Paper, TableRow, TableHead, TableCell, TableBody, Table } from "@material-ui/core";
+import { Paper, TableRow, TableHead, TableCell, TableBody, Table, Typography } from "@material-ui/core";
 import SimplePaperMessage from "../SimplePaperMessage";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyles = makeStyles(theme => ({
+    asteriskExplanation: {
+        marginTop: theme.spacing(1),
+        textAlign: "right",
+    },
+}));
 
 const StopScheduleTable = ({schedule}) => {
-
+    const classes = useStyles();
+    
     return (
         <>
         {schedule.length === 0 ?
             <SimplePaperMessage message="No arrivals found!"/>
             :
+            <>
             <Paper>
                 <Table>
                     <TableHead>
@@ -32,6 +42,10 @@ const StopScheduleTable = ({schedule}) => {
                     </TableBody>
                 </Table>
             </Paper>
+            <Typography variant="body2" className={classes.asteriskExplanation}>
+                * Real-Time
+            </Typography>
+            </>
         }
         </>
     );
