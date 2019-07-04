@@ -146,4 +146,4 @@ export const nextArrivals = async (stop_id, provider_name) => {
  * @param provider_name The name of the provider
  * @returns The source of the provider's logo
  */
-export const getProviderLogoSrc = (provider_name) => `http://amp.move-me.mobi/content/logos/20150915_${provider_name}.png`;
+export const getProviderLogoSrc = (provider_name) => `/api/move-me-logos/20150915_${provider_name}.png`;

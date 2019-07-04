@@ -1,1 +1,3 @@
 /api/move-me/* http://move-me.mobi/:splat 200
+
+/api/move-me-logos/* http://amp.move-me.mobi/content/logos/:splat 200
