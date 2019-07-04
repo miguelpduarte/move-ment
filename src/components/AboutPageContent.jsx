@@ -5,7 +5,7 @@ import { Typography, Grid, Card, CardContent } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { FaHeart, FaGithub } from "react-icons/fa";
 
-const useStyles = makeStyles(theme => {console.log("themeroo0", theme); return ({
+const useStyles = makeStyles(theme => ({
     spaceTop: {
         marginTop: theme.spacing(2),
     },
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => {console.log("themeroo0", theme); return (
     link: {
         color: theme.palette.text.secondary,
     },
-});});
+}));
 
 const AboutPageContent = () => {
     const classes = useStyles();
@@ -30,6 +30,9 @@ const AboutPageContent = () => {
                         </Typography>
                         <Typography gutterBottom variant="h5">
                             move-ment is an alternative webapp front-end to <a className={classes.link} href="http://move-me.mobi">move-me</a>'s website and mobile app.
+                        </Typography>
+                        <Typography gutterBottom variant="body1">
+                            <b>For non tech people:</b> This means that move-ment uses <i>move-me</i> 's data and services all the same (hence the occasional uncontrollable downtime - working on it) and just provides a new look and experience. - Hopefully a better one!
                         </Typography>
                         <Typography gutterBottom variant="body1">
                             It is a work in progress (and voluntary open-source one, at it), so keep in mind that some bugs and random downtime might occurr!
