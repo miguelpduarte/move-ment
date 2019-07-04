@@ -140,3 +140,10 @@ export const nextArrivals = async (stop_id, provider_name) => {
         throw "Error getting next arrivals!";
     }
 };
+
+/**
+ * Calculates the logo src for a certain provider, by name. Extracted for modularity
+ * @param provider_name The name of the provider
+ * @returns The source of the provider's logo
+ */
+export const getProviderLogoSrc = (provider_name) => `http://amp.move-me.mobi/content/logos/20150915_${provider_name}.png`;
