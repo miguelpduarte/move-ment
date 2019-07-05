@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, ListItem, ListItemIcon, ListItemText, ListItemSecondaryAction } from "@material-ui/core";
-import { InvertColors } from "@material-ui/icons";
+import { ColorLens } from "@material-ui/icons";
 import { useDarkModeToggler } from "../hooks/darkMode";
 
 const DarkModeSwitch = () => {
@@ -9,7 +9,7 @@ const DarkModeSwitch = () => {
     return (
         <ListItem onClick={(e) => {e.stopPropagation(); toggleDarkMode();}}>
             <ListItemIcon>
-                <InvertColors/>
+                <ColorLens/>
             </ListItemIcon>
             <ListItemText id="switch-list-label-dark-mode" primary="Dark Mode (refreshes)" />
             <ListItemSecondaryAction>
