@@ -29,7 +29,7 @@ const StopSchedule = ({provider_name, stop_code, stop_id}) => {
                     provider_name={provider_name}
                     refreshSchedule={() => hitApiEndpoint(stop_id, provider_name)}
                 />
-                {loading ? <LinearProgress/> : <React.Fragment/>}
+                <LinearProgress style={loading ? {} : {opacity: 0}}/>
                 {error ?
                     <SimplePaperMessage message={error}/>
                     :
