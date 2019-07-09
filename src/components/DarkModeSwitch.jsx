@@ -7,7 +7,7 @@ const DarkModeSwitch = () => {
     const [is_dark_mode_enabled, toggleDarkMode] = useDarkModeToggler();
 
     return (
-        <ListItem onClick={(e) => {e.stopPropagation(); toggleDarkMode();}}>
+        <ListItem button onClick={(e) => {e.stopPropagation(); toggleDarkMode();}}>
             <ListItemIcon>
                 <ColorLens/>
             </ListItemIcon>

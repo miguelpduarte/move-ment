@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, AppBar, Toolbar, List, SwipeableDrawer, IconButton, ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { Link as GLink } from "gatsby";
-import { Menu as MenuIcon, Flag, DirectionsBus, Info, Star } from "@material-ui/icons";
+import { Menu as MenuIcon, Flag, DirectionsBus, Info, Star, Help, Cloud } from "@material-ui/icons";
 import DarkModeSwitch from "./DarkModeSwitch";
 
 const useStyles = makeStyles(theme => ({
@@ -49,7 +49,9 @@ const Navbar = () => {
                         {text: "Search for Stops", href: "/", icon: Flag},
                         {text: "Search for Lines (WIP)", href: "/lines", icon: DirectionsBus},
                         {text: "Favorites", href: "/favorites", icon: Star},
+                        {text: "Service Status", href: "/status", icon: Cloud},
                         {text: "About", href: "/about", icon: Info},
+                        {text: "FAQ", href: "/faq", icon: Help},
                     ].map((item) => (
                         <ListItem button component={GLink} to={item.href} key={item.text}>
                             <ListItemIcon>{<item.icon/>}</ListItemIcon>

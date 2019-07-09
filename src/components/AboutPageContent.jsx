@@ -1,9 +1,9 @@
 // Necessary to split the component from the page due to the theme not being loaded yet (it is loaded in Layout.jsx)
 // This is a problem from using Gatsby, really, because it would surround <App> in a normal React app and everything would be fine
 import React from "react";
-import { Typography, Grid, Card, CardContent } from "@material-ui/core";
+import { Typography, Grid, Card, CardContent, CardActions, Link, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { FaHeart, FaGithub } from "react-icons/fa";
+import { Link as GLink } from "gatsby";
 
 const useStyles = makeStyles(theme => ({
     spaceTop: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
         padding: theme.spacing(1, 2),
     },
     link: {
-        color: theme.palette.text.secondary,
+        color: theme.palette.primary.main,
     },
 }));
 
@@ -38,21 +38,21 @@ const AboutPageContent = () => {
                             It is a work in progress (and voluntary open-source one, at it), so keep in mind that some bugs and random downtime might occurr!
                         </Typography>
                         <Typography className={classes.spaceTop} variant="overline">
-                            Found a problem or have a suggestion? <a className={classes.link} href="https://github.com/miguelpduarte/move-ment/issues">Submit an issue!</a>
+                            Found a problem or have a suggestion? <GLink to="/faq" className={classes.link}>Visit the FAQ</GLink> or <a className={classes.link} href="https://github.com/miguelpduarte/move-ment/issues">Submit an issue!</a>
                         </Typography>
-                        <Grid container justify="space-around" className={classes.spaceTop}>
-                            <Grid item xs={12} md={6}>
-                                <Typography variant="h6">
-                                    Built with <FaHeart/> by <a className={classes.link} href="https://miguelpduarte.me">@miguelpduarte</a>
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <Typography variant="h6">
-                                    Check out the source code at <a className={classes.link} href="https://github.com/miguelpduarte/move-ment"><FaGithub/></a>
-                                </Typography>
-                            </Grid>
-                        </Grid>
                     </CardContent>
+                    <CardActions>
+                        <Button variant="contained" color="primary">
+                            <Link color="inherit" href="https://github.com/miguelpduarte/move-ment">
+                                Check out the source code
+                            </Link>
+                        </Button>
+                        <Button variant="contained" color="primary">
+                            <Link color="inherit" href="https://miguelpduarte.me">
+                                Built by @miguelpduarte
+                            </Link>
+                        </Button>
+                    </CardActions>
                 </Card>
             </Grid>
         </Grid>
