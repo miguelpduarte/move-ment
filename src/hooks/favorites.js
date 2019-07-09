@@ -4,6 +4,8 @@ import { addToFavorites, isInFavorites, removeFromFavorites } from "../utils/fav
 /**
  * React hook to use for querying and changing the favorite state of a certain stop.
  * @param stop_id The id of the stop
+ * @param stop_code The code of the stop
+ * @param provider The provider of the stop
  * @returns [favorited,toggleFavoriteState]
  */
 export const useFavoriteStop = (stop_id, stop_code, provider) => {

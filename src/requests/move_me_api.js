@@ -50,6 +50,23 @@ export const searchByStops = async (search_str) => {
     }
 };
 
+const SEARCH_STATUS_CHECK_QUERY = "feup";
+
+/**
+ * Checks the status of the searchByStops endpoint for the move-me service
+ * @returns true if the service is working as expected, false otherwise
+ */
+export const checkSearchStatus = async () => {
+    try {
+        const result = await searchByStops(SEARCH_STATUS_CHECK_QUERY);
+        // The result must be a non-empty array. If it is something else then the endpoint is not working as expected
+        return result instanceof Array && result.length != 0;
+    } catch(ignored) {
+        // If any exception is caught, the endpoint is not working
+        return false;
+    }
+};
+
 /**
  * Converts the remotely received arrival object to a sane arrivals array with the following keys: line, direction, time
  * @param arrival_object The arrival object, as received from move-me's "api"
@@ -81,6 +98,7 @@ export const nextArrivals = async (stop_id, provider_name) => {
         });
 
         // Mock data for localhost dev
+        
         // const mock = JSON.parse(`[
         //     {
         //         "Key": 1,
@@ -129,7 +147,6 @@ export const nextArrivals = async (stop_id, provider_name) => {
 
         if (res.ok && res.headers.get("Content-Type").includes("application/json")) {
             const res_json = await res.json();
-            console.log("Debug, json:", res_json);
             return arrivalObjectToArrivalsArray(res_json);
         } else {
         // Some error ocurred
@@ -138,6 +155,25 @@ export const nextArrivals = async (stop_id, provider_name) => {
     } catch(err) {
         console.error("error in nextArrivals", err);
         throw "Error getting next arrivals!";
+    }
+};
+
+const NEXT_ARRIVALS_STATUS_CHECK_DATA = Object.freeze({stop_id: "STCP_GCRT1", provider_name: "STCP"});
+
+/**
+ * Checks the status of the nextArrivals endpoint for the move-me service
+ * @returns true if the service is working as expected, false otherwise
+ */
+export const checkNextArrivalsStatus = async () => {
+    try {
+        const result = await nextArrivals(NEXT_ARRIVALS_STATUS_CHECK_DATA.stop_id, NEXT_ARRIVALS_STATUS_CHECK_DATA.provider_name);
+        // The result must be a non-empty array. If it is something else then the endpoint is not working as expected
+        return result instanceof Array && result.length != 0;
+
+        // TODO: Make this resillient to there not being next arrivals for the selected test stop (considering testing for null only, an empty array would be a good result, just meaning no next arrivals)
+    } catch(ignored) {
+        // If any exception is caught, the endpoint is not working
+        return false;
     }
 };
 
