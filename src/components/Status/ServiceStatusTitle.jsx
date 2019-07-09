@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ListItemText, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 
 const ServiceStatusTitle = ({name}) => {
     return (
-        <ListItemText>
-            <Typography variant="h4">
-                {name}:
-            </Typography>
-        </ListItemText>
+        <Typography variant="h4">
+            {name}:
+        </Typography>
     );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography, Paper, List } from "@material-ui/core";
+import { Grid, Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MoveMeServiceStatus from "./MoveMeServiceStatus";
 
@@ -23,11 +23,9 @@ const StatusPageContent = () => {
                 </Typography>
             </Grid>
             <Grid item xs={12} md={8}>
+                {/* List of Service Status(es) */}
                 <Paper className={classes.paper}>
-                    {/* List of Service Status(es) */}
-                    <List>
-                        <MoveMeServiceStatus/>
-                    </List>
+                    <MoveMeServiceStatus/>
                 </Paper>
             </Grid>
         </Grid>

@@ -5,7 +5,7 @@ import ServiceStatusListItem from "./ServiceStatusListItem";
 
 const ServiceStatusList = ({statuses}) => {
     return (
-        <List>
+        <List disablePadding>
             {statuses.map(({name, available}) => (
                 <ServiceStatusListItem
                     key={name}
