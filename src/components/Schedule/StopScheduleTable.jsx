@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Paper, TableRow, TableHead, TableCell, TableBody, Table, Typography } from "@material-ui/core";
 import SimplePaperMessage from "../SimplePaperMessage";
 import { makeStyles } from "@material-ui/styles";
+import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
     asteriskExplanation: {
@@ -26,7 +27,8 @@ const StopScheduleTable = ({schedule}) => {
                         <TableRow>
                             <TableCell>Line</TableCell>
                             <TableCell>Direction</TableCell>
-                            <TableCell>Time</TableCell>
+                            <TableCell>Arrives in</TableCell>
+                            <TableCell>Arrives at</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -37,6 +39,8 @@ const StopScheduleTable = ({schedule}) => {
                                 </TableCell>
                                 <TableCell>{row.direction}</TableCell>
                                 <TableCell>{row.time}</TableCell>
+                                {/* Removing the asterisks so that the minutes are parsed correctly, even if the result is real-time (would include asterisk) */}
+                                <TableCell>{moment().add(row.time.replace("*", ""), "minutes").format("HH:mm")}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
