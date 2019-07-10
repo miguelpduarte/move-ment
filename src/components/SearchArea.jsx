@@ -27,7 +27,7 @@ const SearchArea = () => {
                 />
             </Grid>
             <Grid item xs={12} md={8}>
-                {loading ? <LinearProgress/> : <React.Fragment/>}
+                <LinearProgress style={loading ? {} : {opacity: 0}}/>
                 {error ?
                     <SimplePaperMessage message={error}/>
                     :
