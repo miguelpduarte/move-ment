@@ -34,6 +34,20 @@ module.exports = {
             },
         },
 
+        {
+            resolve: "gatsby-plugin-google-analytics",
+            options: {
+                // Setting either the tracking id for prod or for beta (Dev) websites
+                trackingId: process.env.NODE_ENV === "production" ? "UA-137730755-3" : "UA-137730755-4",
+                head: true,
+                anonymize: true,
+                respectDNT: true,
+                pageTransitionDelay: 0,
+                sampleRate: 5,
+                siteSpeedSampleRate: 10,
+            },
+        },
+
         // this (optional) plugin enables Progressive Web App + Offline functionality
         // To learn more, visit: https://gatsby.dev/offline
         "gatsby-plugin-offline",

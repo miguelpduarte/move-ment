@@ -1,10 +1,12 @@
 # move-ment
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d8b63afe-6e19-4938-a765-e674831fb029/deploy-status)](https://app.netlify.com/sites/move-ment/deploys)
+[![Netlify Status (Production)](https://api.netlify.com/api/v1/badges/d8b63afe-6e19-4938-a765-e674831fb029/deploy-status)](https://app.netlify.com/sites/move-ment/deploys)
 
 An alternative webapp front-end to [http://move-me.mobi](http://move-me.mobi)'s website and mobile app. Check it out live at [https://move-ment.miguelpduarte.me](https://move-ment.miguelpduarte.me).
 
-A development version is also available [here](https://move-ment-dev.netlify.com). **Note:** Despite getting the updates first, this might be unstable and break often. If you are worried about that, please use the non-beta version linked above. If you use this version and report issues, please mention that in your issue description.
+A development version is also available [here](https://move-ment-dev.netlify.com).
+
+**Note:** Despite getting the updates first, this might be unstable and break often. If you are worried about that, please use the non-beta version linked above. If you use this version and report issues, please mention that in your issue description.
 
 Built using [GatsbyJS](https://www.gatsbyjs.org/).
 
