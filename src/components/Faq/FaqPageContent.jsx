@@ -26,7 +26,7 @@ const FaqPageContent = () => {
             <Grid item xs={12} md={8}>
                 <Paper className={classes.paper}>
                     <Typography gutterBottom variant="h3">
-                        [WIP] Frequently Asked Questions (FAQ):
+                        Frequently Asked Questions (FAQ):
                     </Typography>
                     <List>
                         <FaqQA
