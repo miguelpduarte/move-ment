@@ -3,7 +3,7 @@
   "description": "An alternative webapp front-end to http://move-me.mobi 's website and mobile app. Licensing: GPL-3.0-only",
   "author": "Miguel Duarte <miguelpduarte98@gmail.com>",
   "scripts": {
-    "build": "gatsby build",
+    "build": "APP_ENVIRONMENT=production gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
     "serve": "gatsby serve",
