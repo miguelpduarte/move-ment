@@ -43,7 +43,7 @@ const FaqPageContent = () => {
                             answer={
                             <>
                                 This is due to problems in <i>move-me</i> 's API (service) and thus something that it is not possible to do anything about, at the moment.
-                                You can check try checking the <GLink className={classes.link} to="/status">service's status.</GLink>
+                                You can try checking the <GLink className={classes.link} to="/status">service's status.</GLink>
                             </>
                             }
                         />
